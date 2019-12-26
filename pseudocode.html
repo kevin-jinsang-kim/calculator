@@ -3,6 +3,24 @@ The creation of the simple calculator requires buttons to be created in HTML.
 The function of the calculator should be to perform functions with numbers.
 The input is via mouseclick only, and requires no keyboard input.
 
+What I think a calculator should do:
+1. Have a list of numbers 0-9 and some functional buttons:
+  -, +, AC, CE, =, ÷, x
+2. The display should display only one line of numbers. The previous numbers
+  should be stored in an array which is not visible on the screen.
+3. The formula itself should be an array, such that ["#1" + "symbol" + #2 + ... +]
+  would calculate as a math string using Math.number()
+4. The BEDMAS principle should be applied
+5. Upon pressing the = symbol, the array should display the results of the array,
+  not as a string but as numbers.
+6. Pressing AC should clear entire array as well as clear any values that are
+  currently stored as the temporary values.
+7. Pressing CE should delete only the most recent number on the display and
+  display either a 0 or blank.
+8. After each =, the array shouldn't refresh until AC is pressed.
+
+
+
 !HTML!
 
 The HTML section of the calculator is divided into rows, each containing numbers and functions.
