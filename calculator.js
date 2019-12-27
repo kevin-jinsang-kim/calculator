@@ -12,9 +12,9 @@ let calculator = {
 
 //To add the numbers into the display
 function inputDigit(digit) {
-
+  const { waitSecond, diplay } = calculator
 // If an operator has been used, waitSecond becomes false and the new digit displays
-  if (calculator.waitSecond === true) {
+  if (waitSecond === true) {
     calculator.display = digit;
     calculator.waitSecond = false;
   }
@@ -42,20 +42,22 @@ function addDecimal(decimal) {
 // will be the input. Otherwise, the function "calculate" will run and
 // the formula will be run as the waitSecond becomes true.
 function useOperator(nextOperator) {
-  let input = parseFloat(calculator.display);
+let { first, display, operator, waitSecond } = calculator;
+  let input = parseFloat(display);
 
 // This statement makes it so that operators override when pressed
 // consecutively.
-  if (calculator.operator && calculator.waitSecond)  {
+  if (operator && waitSecond)  {
     calculator.operator = nextOperator;
     console.log(calculator);
     return;
   }
 
-  if (calculator.first === null) {
+  if (first === null) {
     calculator.first = input;
-  } else if (calculator.operator) {
-    let result = calculate[calculator.operator](calculator.first, input);
+  } else if (operator) {
+    let current = first || 0;
+    let result = calculate[calculator.operator](current, input);
 
     calculator.display = String(result);
     calculator.first = result;
@@ -68,13 +70,9 @@ function useOperator(nextOperator) {
 
 var calculate = {
   '÷': (first, second) => first / second,
-
   '*': (first, second) => first * second,
-
   '+': (first, second) => first + second,
-
   '-': (first, second) => first - second,
-
   '=': (first, second) => second
 };
 
@@ -106,38 +104,38 @@ updateDisplay();
 // Need to make keys register on click using an addEventListener('click',)
 let keys = document.querySelector(".calc-buttons");
 keys.addEventListener('click', (event) => {
-
+  let { target } = event;
 // The event(click)'s target will return based on their class.
 // if click isn't a button, it will end.
-  if (!event.target.matches('button')) {
+  if (!target.matches('button')) {
     return;
   }
 
-  if (event.target.classList.contains('operator')) {
+  if (target.classList.contains('operator')) {
     useOperator(event.target.value);
     updateDisplay();
     return;
   }
 // If button pressed is ".",
-  if (event.target.classList.contains('decimal')) {
+  if (target.classList.contains('decimal')) {
     addDecimal(event.target.value);
     updateDisplay();
     return;
   }
 
-  if (event.target.classList.contains('all-clear')) {
+  if (target.classList.contains('all-clear')) {
     allClear();
     updateDisplay();
     return;
   }
 
-  if (event.target.classList.contains('clear-entry')) {
+  if (target.classList.contains('clear-entry')) {
     clearEntry();
     updateDisplay();
     return;
   }
 
-  inputDigit(event.target.value);
+  inputDigit(target.value);
   updateDisplay();
 
 });
