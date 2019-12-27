@@ -4,14 +4,12 @@
 // is pressed, causing the calculator to function.
 // There was nothing saying that it had to be an array, so I wanted to try this.
 // Instead of an array, calculator will be an object.
-
 let calculator = {
   display: "0",
   first: null,
   operator: null,
   waitSecond: false
 }
-
 
 //To add the numbers into the display
 function inputDigit(digit) {
@@ -32,12 +30,8 @@ function inputDigit(digit) {
 
 // Function where decimal point is added if there is only NO decimal points.
 function addDecimal(decimal) {
-  if (calculator.waitSecond === true) {
-    return;
-  }
-  if (!calculator.display.includes(decimal)) {
-    calculator.display += decimal;
-  }
+  if (calculator.waitSecond === true) return;
+  if (!calculator.display.includes(decimal)) calculator.display += decimal;
 }
 
 // Function to add operators to the number which should be a float
