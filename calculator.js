@@ -9,12 +9,93 @@ let calculator = {
   waitSecond: false
 }
 
+
+//To add the numbers into the display
+function inputDigit(digit) {
+
+// If an operator has been used, waitSecond becomes false and the new digit displays
+  if (calculator.waitSecond === true) {
+    calculator.display = digit;
+    calculator.waitSecond = false;
+  }
+  // Overwrite `display` if the current value is '0' otherwise append to it
+  else if (calculator.display === "0") {
+    calculator.display = digit;
+  } else {
+    calculator.display += digit;
+  }
+  console.log(calculator);
+}
+
+// Function where decimal point is added if there is only NO decimal points.
+function addDecimal(decimal) {
+  if (!calculator.display.includes(decimal)) {
+    calculator.display += decimal;
+  }
+}
+
+// Function to add operators to the number which should be a float
+// ****************
+  // NEED TO ADD FUNCTIONS HERE TO MAKE THE OPERATORS WORK!!!
+    // **************
+function useOperator(operator) {
+  let input = parseFloat(calculator.display);
+
+  if (calculator.first === null) {
+    calculator.first = input;
+  }
+
+  calculator.waitSecond = true;
+  calculator.operator = operator;
+  console.log(calculator);
+}
+
 // The screen will need to show the numbers - the display - default = "0".
 function updateDisplay() {
-  const display = document.querySelector(".display");
+  let display = document.querySelector(".display");
   display.value = calculator.display;
 }
 
 updateDisplay();
 
 // Need to make keys register on click using an addEventListener('click',)
+let keys = document.querySelector(".calc-buttons");
+keys.addEventListener('click', (event) => {
+
+// The event(click)'s target will return based on their class.
+// if click isn't a button, it will end.
+  if (!event.target.matches('button')) {
+    return;
+  }
+
+  if (event.target.classList.contains('operator')) {
+    useOperator(event.target.value);
+    updateDisplay();
+    return;
+  }
+// If button pressed is ".",
+  if (event.target.classList.contains('decimal')) {
+    addDecimal(event.target.value);
+    updateDisplay();
+    return;
+  }
+
+  if (event.target.classList.contains('all-clear')) {
+    console.log(event.target.value);
+    return;
+  }
+
+  if (event.target.classList.contains('clear-entry')) {
+    console.log(event.target.value);
+    return;
+  }
+
+  if (event.target.classList.contains('equal')) {
+    console.log(event.target.value);
+    return;
+  }
+
+  inputDigit(event.target.value);
+  updateDisplay();
+
+});
