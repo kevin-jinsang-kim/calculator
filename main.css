@@ -56,14 +56,25 @@ button:hover {
   color: #fff;
 }
 
+
 .all-clear:hover {
   background-color: #f17377;
+}
+
+.clear-entry {
+  background-color: #777;
+  border-color: #b0353a;
+  color: #fff;
 }
 
 .equal {
   background-color: #2e86c0;
   border-color: #337cac;
   color: #fff;
+}
+
+.equal:hover {
+  background-color: #4e9ed4;
 }
 
 .plus {
@@ -75,8 +86,12 @@ button:hover {
   grid-column-end: 5;
 }
 
-.equal:hover {
-  background-color: #4e9ed4;
+.number {
+  color: #333
+}
+
+.decimal {
+  color: #333
 }
 
 .calc-buttons {
