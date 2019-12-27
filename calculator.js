@@ -19,7 +19,7 @@ function inputDigit(digit) {
     calculator.waitSecond = false;
   }
   // Overwrite `display` if the current value is '0' otherwise append to it
-  else if (calculator.display === "0") {
+    else if (calculator.display === "0") {
     calculator.display = digit;
   } else {
     calculator.display += digit;
@@ -29,26 +29,71 @@ function inputDigit(digit) {
 
 // Function where decimal point is added if there is only NO decimal points.
 function addDecimal(decimal) {
+  if (calculator.waitSecond === true) {
+    return;
+  }
   if (!calculator.display.includes(decimal)) {
     calculator.display += decimal;
   }
 }
 
 // Function to add operators to the number which should be a float
-// ****************
-  // NEED TO ADD FUNCTIONS HERE TO MAKE THE OPERATORS WORK!!!
-    // **************
-function useOperator(operator) {
+// If the button pressed is the parameter "first", then the button pressed
+// will be the input. Otherwise, the function "calculate" will run and
+// the formula will be run as the waitSecond becomes true.
+function useOperator(nextOperator) {
   let input = parseFloat(calculator.display);
+
+// This statement makes it so that operators override when pressed
+// consecutively.
+  if (calculator.operator && calculator.waitSecond)  {
+    calculator.operator = nextOperator;
+    console.log(calculator);
+    return;
+  }
 
   if (calculator.first === null) {
     calculator.first = input;
+  } else if (calculator.operator) {
+    let result = calculate[calculator.operator](calculator.first, input);
+
+    calculator.display = String(result);
+    calculator.first = result;
   }
 
   calculator.waitSecond = true;
-  calculator.operator = operator;
+  calculator.operator = nextOperator;
   console.log(calculator);
 }
+
+var calculate = {
+  '÷': (first, second) => first / second,
+
+  '*': (first, second) => first * second,
+
+  '+': (first, second) => first + second,
+
+  '-': (first, second) => first - second,
+
+  '=': (first, second) => second
+};
+
+// Reset button for the calculator
+
+function allClear() {
+  calculator.display = "0",
+  calculator.first = null,
+  calculator.operator = null,
+  calculator.waitSecond = false,
+  console.log(calculator);
+}
+
+// Clears recent entry
+function clearEntry() {
+  calculator.display = "0",
+  console.log(calculator);
+}
+
 
 // The screen will need to show the numbers - the display - default = "0".
 function updateDisplay() {
@@ -81,17 +126,14 @@ keys.addEventListener('click', (event) => {
   }
 
   if (event.target.classList.contains('all-clear')) {
-    console.log(event.target.value);
+    allClear();
+    updateDisplay();
     return;
   }
 
   if (event.target.classList.contains('clear-entry')) {
-    console.log(event.target.value);
-    return;
-  }
-
-  if (event.target.classList.contains('equal')) {
-    console.log(event.target.value);
+    clearEntry();
+    updateDisplay();
     return;
   }
 

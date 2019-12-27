@@ -54,6 +54,11 @@ button:hover {
   background-color: #f0595f;
   border-color: #b0353a;
   color: #fff;
+  width: 100%;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 
 
@@ -65,16 +70,6 @@ button:hover {
   background-color: #777;
   border-color: #b0353a;
   color: #fff;
-}
-
-.equal {
-  background-color: #2e86c0;
-  border-color: #337cac;
-  color: #fff;
-}
-
-.equal:hover {
-  background-color: #4e9ed4;
 }
 
 .plus {
