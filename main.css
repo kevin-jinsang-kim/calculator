@@ -66,6 +66,15 @@ button:hover {
   color: #fff;
 }
 
+.plus {
+  color: #337cac;
+  grid-row-start: 4;
+  grid-row-end: 6;
+  height: 100%;
+  grid-column-start: 4;
+  grid-column-end: 5;
+}
+
 .equal:hover {
   background-color: #4e9ed4;
 }
