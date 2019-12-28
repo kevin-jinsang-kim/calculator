@@ -1,7 +1,6 @@
 var string = "";
 var array = [];
 var tempArray = [];
-var tempOperator = "";
 var display = document.getElementById('display');
 
 function displayScreen(numbers) {
@@ -10,17 +9,25 @@ function displayScreen(numbers) {
 }
 
 function answerString(key) {
-    display.value = key;
-    displayScreen(key);
-    tempArray.push(key);
+  display.value = key;
+  displayScreen(key);
+  tempArray.push(key)
+  return;
 }
 
 function addOperator(key) {
-  array.push(tempArray);
-  tempArray = [];
-  display.value = "0";
-  array.push(key);
+  if (typeof tempArray == "number") {
+    array.push(key);
+    tempArray = [];
+    tempArray.push(key)
+    string = "";
+  } else if (typeof tempArray !== "number") {
+    tempArray = [];
+    tempArray.push(key);
+    string = "";
+  }
 }
+
 
 function allClear() {
   string = "",
