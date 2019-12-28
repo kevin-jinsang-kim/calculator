@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>Kev's Calculator v2.0</title>
+    <meta charset="UTF-8">
+    <link href="main2.css" rel="stylesheet" type="text/css">
+
+  </head>
+
+  <body>
+
+    <div class="calculator">
+
+      <!-- Screen to display number -->
+      <input type="text" id="display" class="display" value="0" disabled>
+
+      <!-- Buttons to press -->
+      <div class="calc-buttons">
+        <button class="all-clear" onClick="allClear()">AC</button>
+        <button class="clear-entry" onClick="clearEntry()">CE</button>
+        <button class="operator" onClick="addOperator('/')">÷</button>
+
+        <button class="number" onClick="answerString(7)">7</button>
+        <button class="number" onClick="answerString(8)">8</button>
+        <button class="number" onClick="answerString(9)">9</button>
+        <button class="operator" onClick="addOperator('*')">x</button>
+
+        <button class="number" onClick="answerString(4)">4</button>
+        <button class="number" onClick="answerString(5)">5</button>
+        <button class="number" onClick="answerString(6)">6</button>
+        <button class="operator" onClick="addOperator('-')">-</button>
+
+        <button class="number" onClick="answerString(1)">1</button>
+        <button class="number" onClick="answerString(2)">2</button>
+        <button class="number" onClick="answerString(3)">3</button>
+        <button class="operator plus" onClick="addOperator('+')">+</button>
+
+        <button class="number" onClick="answerString(0)">0</button>
+        <button class="decimal" onClick="addDecimal('.')">.</button>
+        <button class="equal" onClick="equals()">=</button>
+      </div>
+
+    </div>
+    <script src="calculator2.js"></script>
+  </body>
+
+
+</html>

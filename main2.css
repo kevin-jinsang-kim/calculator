@@ -89,6 +89,10 @@ button:hover {
   color: #333
 }
 
+.equal {
+  background-color: orange;
+}
+
 .calc-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
